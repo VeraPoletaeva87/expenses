@@ -1,0 +1,32 @@
+  .navigation {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: baseline;
+  }
+
+  .title {
+    font-weight: bold;
+    font-size: 32px;
+    font-family: system-ui;
+  }
+
+  .link {
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+  
+    color:  #b6835a;
+  }
+  
+  .link:hover {
+    transition: 0.2s;
+  
+    color: rgb(138, 85, 35);
+  }
+  
+  .link:active {
+    transition: 0.05s;
+  
+    color: #422a0b;
+  }

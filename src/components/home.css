@@ -1,0 +1,30 @@
+.start-block {
+  width: 400px;
+  height: 215px;
+  padding: 12px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  }
+
+  .start-image {
+    background-image: url("../public/start.jpg");
+    width: 768px;
+    height: 432px;
+    margin-left: 150px;
+  }
+
+.marginBottomL {
+    margin-bottom: 16px;
+  }
+
+.greyColor {
+  color: rgb(160, 127, 108);
+}  
+
+  .inline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

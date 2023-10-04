@@ -1,0 +1,33 @@
+.slider--cell {
+    position: relative;
+    top: 10px;
+}
+
+.table--row {
+    line-height: 40px;
+    display: flex;
+    align-items: baseline;
+}
+
+.list__item {
+    display: flex;
+    font-weight: 400;
+  }
+
+.narrow--cell {
+    padding: 10px 0;
+    width: 150px;
+}  
+
+.wide--cell {
+    padding: 10px 0;
+    width: 300px;
+}  
+
+.hint--text {
+    color: #ad8c73;
+}
+
+.margin--bottomM {
+    margin-bottom: 18px;
+}

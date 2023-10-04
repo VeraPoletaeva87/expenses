@@ -1,0 +1,81 @@
+.close {
+    font-size: 45px;
+    font-weight: 600;
+    color: #5e3f26;
+  }
+
+  .close:hover {
+    cursor: pointer;
+    color:#42261a
+  }
+
+  .footer {
+    display: flex;
+    justify-content: center;
+  }
+
+  .select {
+    width: 330px;
+    font-size: 16px;
+    height: 30px;
+  }
+
+  .input {
+    border: 1px #ced0db solid;
+  
+  
+    min-height: 36px;
+    min-width: 310px;
+  
+    line-height: 24px;
+    font-size: 14px;
+    padding: 5px 10px;
+  
+    outline: none;
+    background: none;
+  
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+  
+    color: #303240;
+  }
+
+  .marginBottomL {
+    margin-bottom: 16px;
+  }
+
+  .smallText {
+    font-size: small;
+  }
+
+  .red {
+    color: red;
+  }
+
+  .dialog-box {
+    position: absolute;
+    z-index: 1000;
+    background-color: white;
+    box-shadow: 12px 12px 2px 1px rgb(195 173 157 / 48%);
+}
+  .dialogHeader {
+    background-color: #c3ad9d;
+    height: 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .headerFont {
+    font-size: 20px;
+    color: #2c1810;
+  }
+
+  .addDialog {
+    padding: 0;
+    border: none;
+  }
+
+  .paddingXS {
+    padding: 12px;
+  }

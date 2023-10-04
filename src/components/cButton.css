@@ -1,0 +1,35 @@
+.addButton {
+    background: #ede4de;
+  
+    line-height: 24px;
+    font-size: 14px;
+    color: #2c1810;
+  
+    padding: 5px 16px;
+  
+    border: 0 transparent solid;
+  
+    outline: none;
+  }
+  
+  .addButton:hover {
+    transition: 0.2s;
+    background: #c3ad9d;
+    cursor: pointer;
+  }
+  
+  .addButton:active {
+    transition: 0.05s;
+  
+    background: rgb(155, 130, 106);
+  }
+  
+  .task-form__button {
+    min-height: 48px;
+    min-width: 48px;
+    margin-left: -4px;
+    border: 1px solid rgb(165, 161, 161);
+    border-radius: 6px;
+  }
+
+  
