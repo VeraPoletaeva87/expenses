@@ -64,8 +64,12 @@ const onSearchChange = (event) => {
 }
 
 const onSave = (newItem) => {
- // setData(newData);
   setEditItem(null);
+  fetch('http://localhost:3010/expenses')
+    .then((res) => res.json())
+    .then((result) => {
+      setInitialItems(result.data);
+    });
 }
 
 const editItemHandler = (item) => {
