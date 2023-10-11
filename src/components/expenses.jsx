@@ -19,7 +19,7 @@ const [initialItems, setInitialItems] = useState([]);
 const [search, setSearch] = useState('');  
 const [editItem, setEditItem] = useState(null);  
 const [sortField, setSortField] = useState('');  
-const [dialogHeader, setDialogHeader] = useState('Add purchase');
+const [isEditing, setIsEditing] = useState(false);
 
 const expensesItems = useMemo(() => search && search.length >= 3
  ? initialItems.filter(el => el.comment.includes(search)) 
@@ -55,8 +55,16 @@ const onClose = () => {
 }
 
 const onDeleteItem = (item) => {
-  // data.splice(item.id, 1);
-  // setData(data);
+  fetch('http://localhost:3010/expenses', {
+    method: 'DELETE',
+    body: JSON.stringify(item),
+    headers: {
+        'content-type': 'application/json' 
+    }  
+})
+  .then((response) => {
+        onSave();
+  });
 }
 
 const onSearchChange = (event) => {
@@ -74,11 +82,11 @@ const onSave = (newItem) => {
 
 const editItemHandler = (item) => {
   setEditItem(item);
-  setDialogHeader('Edit purchase');
+  setIsEditing(true);
 }
 
 const addExpense = () => {
-  setDialogHeader('Add purchase');
+  setIsEditing(false);
   setEditItem({
     id: null,
     date: '2023-06-30',
@@ -152,7 +160,7 @@ const res = expensesItems.map(function(item, index) {
          {res}
       </tbody>
    </table>
-   {editItem && (<AddForm item={editItem} header={dialogHeader} onClose={onClose}  onSave={onSave} />)}
+   {editItem && (<AddForm item={editItem} isEditing={isEditing} onClose={onClose}  onSave={onSave} />)}
       </div>
       {emptyList && (<div className='justify-center'>No results</div>)}
       </>

@@ -5,7 +5,7 @@ import CButton from './cButton';
 import './addForm.css';
 
 
-const AddForm = ({item, header, onClose, onSave}) => {
+const AddForm = ({item, isEditing, onClose, onSave}) => {
     const [state, setState] = useState(item);
     const [emptySum, setEmptySum] = useState(false); 
 
@@ -43,7 +43,7 @@ const AddForm = ({item, header, onClose, onSave}) => {
             const formData = new FormData(form);
         
             fetch('http://localhost:3010/expenses', {
-                method: 'POST',
+                method: isEditing ? 'PUT' : 'POST',
                 body: JSON.stringify(state),
                 headers: {
                     'content-type': 'application/json' 
@@ -58,7 +58,7 @@ const AddForm = ({item, header, onClose, onSave}) => {
     return (
       <div className='dialog-box'>
         <div className="dialogHeader paddingXS">
-            <span className="headerFont">{header}</span>
+            <span className="headerFont">{isEditing ? 'Edit purchase' : 'Add purchase'}</span>
             <span className="close" onClick={closeDialog}>&times;</span>
         </div>
         <form id="addForm" onSubmit={handleSubmit}>
