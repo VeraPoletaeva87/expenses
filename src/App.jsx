@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import Navigation from './components/navigation';
+import Statistics from './components/statistics';
 import Expenses from './components/expenses';
 import Home from './components/home';
 import Budget from './components/budget';
@@ -31,6 +32,7 @@ class App extends Component {
       <Route path="/" element={<Home/>} />
       <Route path="/expenses" element={<Expenses/>} />
       <Route path="/budget" element={<Budget/>} />
+      <Route path="/statistics" element={<Statistics/>} />
       </Routes>
     </div>
   </BrowserRouter>
