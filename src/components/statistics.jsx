@@ -11,28 +11,21 @@ Chart.register(CategoryScale);
 
 const Statistics = () => {
 const [sortField, setSortField] = useState(10);  
-const [initialItems, setInitialItems] = useState([]);
+const [labels, setLabels] = useState([]);
+const [totals, setTotals] = useState([]);
+const [totalSum, setTotalSum] = useState(null);
 
-const categories = useMemo(() => initialItems.map(item => item.category), [initialItems]);
-var labels = [...new Set(categories)];
-
-let totals = [];
-
-useMemo(() => {
-  labels.forEach(label => {
-   const total = initialItems
-  .filter(item => item.category === label)
-  .map(cat => +cat.sum)
-  .reduce((acc, sum) => acc + sum, 0);
-  totals.push(total);
-  });
-}, [initialItems]);
+//parameters for filter by period
+const params = {periodType: sortField};
+const queryString = new URLSearchParams(params).toString();
 
 useEffect(() => {
-  fetch('http://localhost:3010/expenses')
+  fetch('http://localhost:3010/api/statistics?'+queryString)
     .then((res) => res.json())
     .then((result) => {
-      setInitialItems(result.data);
+      setLabels(result.data.labels);
+      setTotals(result.data.totals); 
+     setTotalSum(result.data.totals.reduce((acc, sum) => acc + sum, 0));
     });
 }, []);
 
@@ -63,14 +56,21 @@ const res = {
           '#ddd122',
           '#b88e51'
         ],
-        borderColor: "black",
-        borderWidth: 2
+        borderColor: '#5f4f49',
+        borderWidth: 1
       }
     ]
   };
     
     return (
-      <div className="pieChart">
+      <div  className="statistics-main">
+        <div className='flex marginRight'>
+        <h1 className='marginS'>Total expenses:</h1>
+        <h2>{totalSum}</h2>
+        </div>
+      <div className='chartBlock'>
+      <div className="flex marginBottom">
+      <span className='marginS'>View statistics for </span>
       <FormControl className='sortWidth'>
             <Select
                 value={sortField}
@@ -79,9 +79,14 @@ const res = {
               <MenuItem value={10}>Last month</MenuItem>
               <MenuItem value={20}>Last week</MenuItem>
               <MenuItem value={30}>Last year</MenuItem>
+              <MenuItem value={40}>All</MenuItem>
             </Select>
       </FormControl>
+      </div>
+      <div className='pieChart'>
       <Pie data={res}/>
+      </div>
+      </div>
     </div>
     );
   }
