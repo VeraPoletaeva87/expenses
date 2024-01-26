@@ -11,6 +11,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import AddForm from './addForm';
 import CButton from './cButton';
 import './expenses.css';
+import Dialog from './confirmation/dialog';
 
 const currentDate = new Date;
 
@@ -20,6 +21,7 @@ const [search, setSearch] = useState('');
 const [editItem, setEditItem] = useState(null);  
 const [sortField, setSortField] = useState('');  
 const [isEditing, setIsEditing] = useState(false);
+const [showConfirmation, setShowConfirmation] = useState(false);
 
 const expensesItems = useMemo(() => search && search.length >= 3
  ? initialItems.filter(el => el.comment.includes(search)) 
@@ -55,16 +57,7 @@ const onClose = () => {
 }
 
 const onDeleteItem = (item) => {
-  fetch('http://localhost:3010/expenses', {
-    method: 'DELETE',
-    body: JSON.stringify(item),
-    headers: {
-        'content-type': 'application/json' 
-    }  
-})
-  .then((response) => {
-        onSave();
-  });
+  setShowConfirmation(true);
 }
 
 const onSearchChange = (event) => {
@@ -83,6 +76,24 @@ const onSave = (newItem) => {
 const editItemHandler = (item) => {
   setEditItem(item);
   setIsEditing(true);
+}
+
+const handleSubmitConfirmation = () => {
+  fetch('http://localhost:3010/expenses', {
+    method: 'DELETE',
+    body: JSON.stringify(item),
+    headers: {
+        'content-type': 'application/json' 
+    }  
+})
+  .then((response) => {
+        onSave();
+        setShowConfirmation(false);
+  });
+}
+
+const handleCloseConfirmation = () => {
+  setShowConfirmation(false);
 }
 
 const addExpense = () => {
@@ -163,6 +174,11 @@ const res = expensesItems.map(function(item, index) {
    {editItem && (<AddForm item={editItem} isEditing={isEditing} onClose={onClose}  onSave={onSave} />)}
       </div>
       {emptyList && (<div className='justify-center'>No results</div>)}
+      <Dialog visible={showConfirmation}
+              text="Delete record?"
+              onCancel={handleCloseConfirmation}
+              onSubmit={handleSubmitConfirmation}>
+      </Dialog>
       </>
     );
   }

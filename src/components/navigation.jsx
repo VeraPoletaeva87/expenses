@@ -25,8 +25,9 @@ const Navigation = () => {
             <a className='link'href="/statistics">
                     STATISTICS
             </a>
-            <CButton 
-             title="Login | Register"/>
+            <a className='link'href="/signup">
+            Регистрация
+            </a>
       </div>
 
     );
